@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+
+    <style type="text/css">
+        body{
+		color: #fff;
+		background: #4c535d;
+		font-family: 'Roboto', sans-serif;
+	}
+    </style>
+
+</head>
+<body>
+
+<div layout:fragment="continut" class="container">
+
+
+    <!--<div th:each="trip : ${trips}">-->
+        <!--<div th:each="picture: ${trip.pictureList}">-->
+
+
+            <!--<img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}" width="300" height="300"-->
+                 <!--class="img-thumbnail">-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div th:each="trip : ${trips}">-->
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<h3>-->
+        <!--<p th:text="${trip.tripName}"/></h3>-->
+
+            <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" width="300" height="300">-->
+            <!--<div class="carousel-inner">-->
+                <!--<div class="carousel-item active">-->
+                    <!--<img class="d-block w-100" th:attr="src=@{'data:image/jpeg;base64,'+${trip.pictureList[0].getPictureBase64()}}"-->
+                         <!--alt="Start Slideshow">-->
+                <!--</div>-->
+
+                <!--<div class="carousel-item" th:each="picture : ${trip.pictureList}">-->
+                    <!--<img class="d-block w-100" th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">-->
+                <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                <!--<span class="sr-only">Previous</span>-->
+            <!--</a>-->
+            <!--<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">-->
+                <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+                <!--<span class="sr-only">Next</span>-->
+            <!--</a>-->
+
+           <!--</div>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+
+    <!--<h2>Trips in database </h2>-->
+    <!--<table>-->
+    <!--<tr>-->
+    <!--<th>Id</th>-->
+    <!--<th>Name</th>-->
+    <!--<th>Description</th>-->
+    <!--&lt;!&ndash;<th>Picture</th>>&ndash;&gt;-->
+
+    <!--</tr>-->
+    <!--<tr th:each="trip: ${trips}">-->
+    <!--<td> <img th:attr="src=@{'data:image/jpeg;base64,'+${trip.pictureList[0].getPictureBase64()}}"-->
+              <!--width="300" height="300"> </td>-->
+    <!--&lt;!&ndash;<td th:text="${trip.tripName}"></td>&ndash;&gt;-->
+    <!--<td th:text="${trip.description}"></td>-->
+    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<tr th:each="picture: ${trip.pictureList}">&ndash;&gt;-->
+    <!--&lt;!&ndash;<td><img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}"></td>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--</table>-->
+
+    <!--<table>-->
+    <!--<th:block th:each="trip: ${trips}">-->
+    <!--<td>-->
+    <!--<tr th:each="picture: ${trip.pictureList}">-->
+    <!--<img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}" width="300" height="300"></img>-->
+    <!--</tr>-->
+    <!--<td>-->
+    <!--</th:block>-->
+    <!--</table>-->
+
+
+    <!--official page-->
+
+    <div th:each="trip: ${trips}">
+    <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading" th:text="${trip.tripName}"></h2>
+            <p class="lead">
+
+                <!--<a th:href="@{/viewTrip}">View Trip</a>-->
+                <form th:action="@{/viewTrip}" method="post">
+                    <input type="hidden" name="selectedTripId" th:value="${trip.tripId}" />
+                    <input type="submit" class="btn btn-danger" value="View details">
+                </form>
+            </p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" alt="Generic placeholder image"
+                    th:attr="src=@{'data:image/jpeg;base64,'+${trip.pictureList[0].getPictureBase64()}}"
+                 width="400" height="400">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+    </div>
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pictures</title>
+</head>
+<body>
+
+<h2>Pictures in database </h2>
+<table>
+    <tr>
+        <th>Picture</th>
+    </tr>
+    <tr th:each="picture: ${picturesList}">
+
+        <td>
+        <img th:attr="src=@{'data:image/jpeg;base64,'+${picture.pictureBase64}}"
+             class="img-responsive center-block" width="300" height="300">
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

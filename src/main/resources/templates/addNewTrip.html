@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Trip</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+      input[type=text], textarea {
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, textarea:focus {
+  -moz-box-shadow: 0 0 5px #51cbee;
+  -webkit-box-shadow: 0 0 5px #51cbee;
+  box-shadow: 0 0 5px #51cbee;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #51cbee;
+}
+
+label {
+  width: 150px;
+  float: left;
+}
+
+body {
+  padding: 20px;
+}
+
+    </style>
+<body>
+
+<div layout:fragment="continut" class="container">
+
+Add a new trip
+Please input the following values to register
+
+<form th:action="@{/addNewTrip}" th:object="${trips}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{tripName}"/></td>
+            <!--<td th:if="${#fields.hasErrors('tripName')}" th:errors="${tripName}"></td>-->
+        </tr>
+        <tr>
+            <td>Story:</td>
+
+            <td>
+                <!--<input  autofocus required type="text" th:field="*{description}" style="height:300px; width:300px;"/>-->
+                <div>
+                    <label for="textarea">Textarea</label>
+                    <textarea cols="40" rows="8" name="textarea" id="textarea" th:field="*{description}"></textarea>
+                </div>
+            </td>
+            <!--<td th:if="${#fields.hasErrors('description')}" th:errors="${description}"></td>-->
+        </tr>
+
+    </table>
+
+    <div class="col-xs-4">
+        <p >Want to make it public? <input type="checkbox" name="Public?:" th:field="*{sharable}" checked="checked" /></p>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+
+<a href="/"><button type="button">Cancel</button></a>
+</div>
+
+</body>
+</html>
