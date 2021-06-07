@@ -1,5 +1,6 @@
 package com.sci.Trip.Model;
 
+import com.sci.Trip.Validator.ValidPhoneNumber;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
 
@@ -40,6 +41,9 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @ValidPhoneNumber
+    private String phone;
+
     @Column(name = "active")
     private int active;
 
@@ -52,14 +56,7 @@ public class User {
     public User() {
     }
 
-    public User(User users) {
-        this.email = users.getEmail();
-          this.roles = users.getRoles();
-        this.name = users.getName();
-        this.lastName = users.getLastName();
-        this.id = users.getId();
-        this.password = users.getPassword();
-    }
+
 
     public int getId() {
         return id;
@@ -99,6 +96,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getActive() {

@@ -56,26 +56,23 @@ public class TripsController {
     // Adding a trip
     @GetMapping(path = "/addNewTrip")
     public String getAddNewTripPage(Model model) {
-        model.addAttribute("trips", new Trip());
+        model.addAttribute("trip", new Trip());
         return "addNewTrip";
     }
-
     @PostMapping(value = "/addNewTrip")
-    public String addNewTrip(@Valid Trip trip, @RequestParam("files") List<MultipartFile> files, BindingResult bindingResult) {
+    public String addNewTrip(@ModelAttribute("trip") Trip trip, @RequestParam("files") List<MultipartFile> files, BindingResult bindingResult) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        int userId = userService.findUser(currentPrincipalName).getId();
+        trip.setUserId(userId);
+        trip.setPictureName("deprecated");
+
+        tripValidator.validate(trip,bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "addNewTrip";
         }
-
-        if (files.isEmpty()) {
-            return "addNewTrip";
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        int userId = userService.findUser(currentPrincipalName).getId();
-
-        trip.setUserId(userId);
-        trip.setPictureName("deprecated");
 
         tripsService.saveTrip(trip);
         for (MultipartFile file : files) {
@@ -91,7 +88,9 @@ public class TripsController {
         return "upload";
     }
 
-    //Deprecated
+    //Deprecated...
+    //I let this code in because at some point in the development of this app,
+    // it also saved the picture files on the disk
     @PostMapping("/upload")
     public String upload(Model model, @RequestParam("files") MultipartFile[] files, HttpSession session) {
 
@@ -118,6 +117,7 @@ public class TripsController {
         return "uploadStatusView";
     }
 
+    //Viewing trips for the user who is logged in
     @GetMapping("/myTrips")
     public ModelAndView myTrips() {
         ModelAndView modelAndView = new ModelAndView();
@@ -178,13 +178,7 @@ public class TripsController {
         updateTrip.setTripName(trip.getTripName());
         updateTrip.setDescription(trip.getDescription());
 
-        //System.out.println("Existing trip: "+currentTrip.getTripName()+", "+currentTrip.getDescription());
-        System.out.println("*****************");
-        System.out.println("USER ID IS "+trip.getUserId()+ " " +updateTrip.getUserId());
-        System.out.println(trip.getTripId()+" --- "+trip.getTripName()+": "+trip.getDescription());
-        System.out.println("*****************");
-
-        tripValidator.validate(trip,bindingResult);
+        tripValidator.validate(updateTrip,bindingResult);
         if (bindingResult.hasErrors()) {
             return "editTrip";
         }

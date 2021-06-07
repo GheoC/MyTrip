@@ -13,7 +13,7 @@ public class Trip {
 
     @Id
     @Column(name = "trips_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tripId;
 
     @Column(name = "name")

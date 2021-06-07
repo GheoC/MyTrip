@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
+	  layout:decorate="~{layout/layout}">
 <head>
 	<meta charset="UTF-8">
 	<title>Edit Trip</title>
@@ -27,6 +28,8 @@
 
 </head>
 <body>
+
+<div layout:fragment="continut" class="container">
 <!-- CONTAINER -->
 
 <div class="container">
@@ -67,15 +70,15 @@
 		<!-- Button: Save Changes -->
 
 		<div class="form-group">
-			<label class="col-md-3 control-label"></label>
-			<div class="col-md-4">
+			<label class="col-md-2 control-label"></label>
+			<div class="col-md-0">
 				<button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-edit">
 				</span> Save Changes
 				</button>
 			</div>
 		</div>
 	</form>
-
+</div>
 </div>
 </body>
 </html>

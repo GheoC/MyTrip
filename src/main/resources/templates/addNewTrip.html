@@ -1,102 +1,126 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
-      layout:decorate="~{layout/layout}">
+      layout:decorate="~{layout/layout}" >
+
 <head>
     <meta charset="UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New Trip</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>New Trip Details</title>
+
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+            src="https://code.jquery.com/jquery-3.4.0.js"></script>
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/trips_date.css">
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+
+
 </head>
-<style>
-      input[type=text], textarea {
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #DDDDDD;
-}
-
-input[type=text]:focus, textarea:focus {
-  -moz-box-shadow: 0 0 5px #51cbee;
-  -webkit-box-shadow: 0 0 5px #51cbee;
-  box-shadow: 0 0 5px #51cbee;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #51cbee;
-}
-
-label {
-  width: 150px;
-  float: left;
-}
-
-body {
-  padding: 20px;
-}
-
-
-</style>
 <body>
 
 <div layout:fragment="continut" class="container">
 
-    Add a new trip
-    Please input the following values to register
 
-    <form enctype="multipart/form-data" th:action="@{/addNewTrip}" th:object="${trips}" method="post">
-        <table>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" th:field="*{tripName}"/></td>
-                <td th:if="${#fields.hasErrors('tripName')}" th:errors="${tripName}"></td>
-            </tr>
-            <tr>
-                <td>Story:</td>
+<!-- CONTENT: Validation Form -->
 
-                <td>
-                    <div>
-                        <label for="textarea">Textarea</label>
-                        <textarea cols="40" rows="8" name="textarea" id="textarea" th:field="*{description}"></textarea>
+<div class="container">
+    <form class="form-group" enctype="multipart/form-data" th:action="@{/addNewTrip}" th:object="${trip}"
+          method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+
+            <legend class="col-md-12" style="text-align: center;">New Trip Details</legend>
+
+            <!-- Trip Name -->
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="tripName">Trip Name</label>
+                <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i
+                            class="glyphicon glyphicon-briefcase"></i> </span>
+                        <input class="form-control" th:field="*{tripName}" id="tripName" type="text"
+                               placeholder="Add a Trip Name">
                     </div>
-                </td>
-                <td th:if="${#fields.hasErrors('description')}" th:errors="${description}"></td>
-            </tr>
+                    <small class="text-danger" th:if="${#fields.hasErrors('tripName')}" th:errors="*{tripName}"></small>
+                </div>
+            </div>
 
+            <!-- Description -->
 
-            <tr>
-                <td>Pictures:</td>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="description">Description</label>
+                <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i
+                            class="glyphicon glyphicon-pencil"></i> </span>
+                        <textarea class="form-control" id="description" rows=5 th:field="*{description}"
+                                  placeholder="Add description">
+					</textarea>
+                    </div>
+                    <small class="text-danger" th:if="${#fields.hasErrors('description')}"
+                           th:errors="*{description}"></small>
+                </div>
+            </div>
 
-                <td>
+            <!-- Sharable Checkbox -->
+
+            <div class="col-xs-4">
+                <p>Want to make it public? <input type="checkbox" name="Public?:" th:field="*{sharable}" checked="checked"/>
+                </p>
+            </div>
+
+            <div>
+                <div> Photos:</div>
+
+                <div>
                     <div>
                         <input type="file" name="files" multiple>
                         </input>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </div>
 
-        </table>
+				</script>
 
-        <div class="col-xs-4">
-            <p>Want to make it public? <input type="checkbox" name="Public?:" th:field="*{sharable}" checked="checked"/>
-            </p>
-        </div>
+            <!-- Button: Add Trip -->
 
-        <button type="submit">Submit</button>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-4">
+                    <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-plus"></span> Add
+                        Trip</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-4">
+                    <a href="/myTrips">
+                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span> Cancel </button>
+                    </a>
+                </div>
+            </div>
+
+
+        </fieldset>
     </form>
-
-
-    <a href="/">
-        <button type="button">Cancel</button>
-    </a>
 </div>
-
+</div>
 </body>
 </html>

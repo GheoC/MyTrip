@@ -8,6 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+//reference: https://docs.spring.io/spring-framework/docs/3.0.0.M4/reference/html/ch05s02.html
+
 @Component
 public class TripValidator implements Validator {
 
