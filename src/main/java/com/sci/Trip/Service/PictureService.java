@@ -12,15 +12,18 @@ import java.util.Base64;
 @Service
 public class PictureService {
 
-    @Autowired
     private PicturesRepository picturesRepository;
+    @Autowired
+    public void setPicturesRepository(PicturesRepository picturesRepository) {
+        this.picturesRepository = picturesRepository;
+    }
 
     public void storePicture(int tripsId, MultipartFile file) {
         Picture picture = null;
         String picBase64;
         try {
             picBase64 = Base64.getEncoder().encodeToString(file.getBytes());
-            System.out.println(picBase64);
+//            System.out.println(picBase64);
             picture = new Picture(tripsId, file.getBytes());
             picture.setPictureBase64(picBase64);
         } catch (IOException e) {

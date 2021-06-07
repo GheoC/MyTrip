@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,16 +21,24 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired
     UserService userService;
-
-    @Autowired
     TripsService tripsService;
-
-    @Autowired
     PictureService pictureService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+    @Autowired
+    public void setTripsService(TripsService tripsService) {
+        this.tripsService = tripsService;
+    }
+    @Autowired
+    public void setPictureService(PictureService pictureService) {
+        this.pictureService = pictureService;
+    }
+
+    @GetMapping(value = "/")
     public ModelAndView getMainPage() {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -37,8 +46,8 @@ public class MainController {
         for (Trip trip:tripsList){
             trip.setPictureList((List<Picture>) pictureService.getAllPicturesByTripId(trip.getTripId()));
 
-            System.out.println(trip.getTripId()+", "+trip.getPictureName());
-            trip.getPictureList().forEach(picture -> System.out.println(picture.getPictureBase64()));
+//            System.out.println(trip.getTripId()+", "+trip.getPictureName());
+//            trip.getPictureList().forEach(picture -> System.out.println(picture.getPictureBase64()));
         }
         modelAndView.addObject("trips",tripsList);
 

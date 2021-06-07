@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,12 +26,18 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
-    UserService userService;
 
-    @Autowired
+    UserService userService;
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+    @Autowired
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @GetMapping("/users")
     public ModelAndView getAllUsers(){
@@ -38,13 +45,13 @@ public class UserController {
         return modelAndView.addObject("users", userService.getAllUsers());
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String showRegisterUserPage(Model model){
         model.addAttribute("user", new User());
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public String saveNewUser(@Valid User user, BindingResult bindingResult, Model model, HttpServletRequest request) {
         if(bindingResult.hasErrors()){
             return "register";
@@ -55,11 +62,11 @@ public class UserController {
 
         userService.saveUser(user);
 
-        authenticateUserAndSetSession(user, request);
+        authenticateUserAndSetSession(user);
         return "redirect:/";
     }
 
-    private void authenticateUserAndSetSession(User user, HttpServletRequest request) {
+    private void authenticateUserAndSetSession(User user) {
         String username = user.getEmail();
         System.out.println(username);
         String password = user.getPassword();

@@ -18,18 +18,22 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class UserService {
 
-    @Autowired
+
     UsersRepository usersRepository;
-
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public void setUsersRepository(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
+    @Autowired
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Iterable<User> getAllUsers() {

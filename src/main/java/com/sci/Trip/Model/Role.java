@@ -2,7 +2,6 @@ package com.sci.Trip.Model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "role")
 public class Role {

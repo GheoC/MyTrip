@@ -8,13 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TripsService {
 
-    @Autowired
     TripsRepository tripsRepository;
-
-//    private Trip findTripByName(String tripName){
-//
-//        return tripsRepository.findByName(tripName);
-//    }
+    @Autowired
+    public void setTripsRepository(TripsRepository tripsRepository) {
+        this.tripsRepository = tripsRepository;
+    }
 
     public void saveTrip(Trip trips){
         tripsRepository.save(trips);
@@ -36,9 +34,17 @@ public class TripsService {
         return tripsRepository.findTripByTripID(tripId);
     }
 
+    public Trip getTripByTripIdAndUserId(int tripId,int userID)
+    {
+        return tripsRepository.findByTripIdAndUserId(tripId, userID);
+    }
+
     public void removeTripByTripId(int tripId){
         tripsRepository.deleteById(tripId);
     }
 
+    public void save(Trip trip) {
+        tripsRepository.save(trip);
+    }
 
 }

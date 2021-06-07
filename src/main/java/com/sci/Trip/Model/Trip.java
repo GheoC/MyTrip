@@ -24,6 +24,7 @@ public class Trip {
     private String pictureName;
 
     @Column(name = "description")
+    @NotBlank(message = "Please insert a description")
     private String description;
 
     @Column(name = "sharable")

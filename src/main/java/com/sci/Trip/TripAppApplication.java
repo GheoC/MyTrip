@@ -12,7 +12,6 @@ import java.io.File;
 public class TripAppApplication {
 
 	public static void main(String[] args) {
-	//	new File(FileUploadController.uploadDirectory).mkdir();
 		SpringApplication.run(TripAppApplication.class, args);
 	}
 

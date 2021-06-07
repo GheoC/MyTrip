@@ -22,8 +22,6 @@ public class Picture {
     @Column(name = "picture_base64")
     private String pictureBase64;
 
-
-
     public Picture() {
     }
 

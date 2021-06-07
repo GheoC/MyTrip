@@ -244,6 +244,11 @@
                 <input type="submit" class="btn btn-danger" value="View Details">
             </form></td>
 
+            <td><form th:action="@{/edit}" method="get">
+                <input type="hidden" name="selectedTripId" th:value="${trip.tripId}" />
+                <input type="submit" class="btn btn-danger" value="Edit">
+            </form></td>
+
             <td><form th:action="@{/delete}" method="post">
                 <input type="hidden" name="selectedTripId" th:value="${trip.tripId}" />
                 <input type="submit" class="btn btn-danger" value="Delete">

@@ -20,11 +20,17 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private DataSource dataSource;
 
     @Autowired
-    private DataSource dataSource;
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;
@@ -53,6 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register").permitAll()
                 .antMatchers("/addNewTrip").permitAll()
                 .antMatchers("/viewTrip").permitAll()
+                .antMatchers("/editTrip").permitAll()
                 .antMatchers("/admin/**").hasAuthority("USER").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")

@@ -19,84 +19,6 @@
 
 <div layout:fragment="continut" class="container">
 
-
-    <!--<div th:each="trip : ${trips}">-->
-        <!--<div th:each="picture: ${trip.pictureList}">-->
-
-
-            <!--<img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}" width="300" height="300"-->
-                 <!--class="img-thumbnail">-->
-
-        <!--</div>-->
-
-    <!--</div>-->
-
-    <!--<div th:each="trip : ${trips}">-->
-        <!--<table>-->
-            <!--<tr>-->
-                <!--<h3>-->
-        <!--<p th:text="${trip.tripName}"/></h3>-->
-
-            <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" width="300" height="300">-->
-            <!--<div class="carousel-inner">-->
-                <!--<div class="carousel-item active">-->
-                    <!--<img class="d-block w-100" th:attr="src=@{'data:image/jpeg;base64,'+${trip.pictureList[0].getPictureBase64()}}"-->
-                         <!--alt="Start Slideshow">-->
-                <!--</div>-->
-
-                <!--<div class="carousel-item" th:each="picture : ${trip.pictureList}">-->
-                    <!--<img class="d-block w-100" th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}">-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">-->
-                <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-                <!--<span class="sr-only">Previous</span>-->
-            <!--</a>-->
-            <!--<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">-->
-                <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-                <!--<span class="sr-only">Next</span>-->
-            <!--</a>-->
-
-           <!--</div>-->
-            <!--</tr>-->
-        <!--</table>-->
-    <!--</div>-->
-
-    <!--<h2>Trips in database </h2>-->
-    <!--<table>-->
-    <!--<tr>-->
-    <!--<th>Id</th>-->
-    <!--<th>Name</th>-->
-    <!--<th>Description</th>-->
-    <!--&lt;!&ndash;<th>Picture</th>>&ndash;&gt;-->
-
-    <!--</tr>-->
-    <!--<tr th:each="trip: ${trips}">-->
-    <!--<td> <img th:attr="src=@{'data:image/jpeg;base64,'+${trip.pictureList[0].getPictureBase64()}}"-->
-              <!--width="300" height="300"> </td>-->
-    <!--&lt;!&ndash;<td th:text="${trip.tripName}"></td>&ndash;&gt;-->
-    <!--<td th:text="${trip.description}"></td>-->
-    <!--&lt;!&ndash;<td>&ndash;&gt;-->
-    <!--&lt;!&ndash;<tr th:each="picture: ${trip.pictureList}">&ndash;&gt;-->
-    <!--&lt;!&ndash;<td><img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}"></td>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-    <!--&lt;!&ndash;</td>&ndash;&gt;-->
-    <!--</tr>-->
-    <!--</table>-->
-
-    <!--<table>-->
-    <!--<th:block th:each="trip: ${trips}">-->
-    <!--<td>-->
-    <!--<tr th:each="picture: ${trip.pictureList}">-->
-    <!--<img th:attr="src=@{'data:image/jpeg;base64,'+${picture.getPictureBase64()}}" width="300" height="300"></img>-->
-    <!--</tr>-->
-    <!--<td>-->
-    <!--</th:block>-->
-    <!--</table>-->
-
-
     <!--official page-->
 
     <div th:each="trip: ${trips}">
@@ -121,9 +43,6 @@
 
     <hr class="featurette-divider">
     </div>
-
-
-
 </div>
 </body>
 </html>

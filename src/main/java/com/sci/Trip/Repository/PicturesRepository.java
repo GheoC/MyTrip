@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface PicturesRepository extends CrudRepository<Picture, Integer> {
 
     @Query(value = "select * from pictures where trips_id=?", nativeQuery = true)
@@ -15,7 +17,5 @@ public interface PicturesRepository extends CrudRepository<Picture, Integer> {
     @Transactional
     @Query(value = "delete from pictures where trips_id=?", nativeQuery = true)
     void deletePicturesByTripID(int tripId);
-
-
 
 }

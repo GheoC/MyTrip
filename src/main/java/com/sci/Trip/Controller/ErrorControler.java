@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ErrorControler {
 
     @GetMapping(name = "/error")
-    public String getErrorPage(){
+    public String getErrorPage()
+    {
         return "error";
     }
 }

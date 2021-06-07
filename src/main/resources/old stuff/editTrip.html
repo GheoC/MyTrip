@@ -51,12 +51,13 @@ body {
     Add a new trip
     Please input the following values to register
 
-    <form enctype="multipart/form-data" th:action="@{/addNewTrip}" th:object="${trips}" method="post">
+    <form th:action="@{/editTrip}" th:object="${trip}" method="post">
+
         <table>
             <tr>
                 <td>Name:</td>
                 <td><input type="text" th:field="*{tripName}"/></td>
-                <td th:if="${#fields.hasErrors('tripName')}" th:errors="${tripName}"></td>
+<!--                <td th:if="${#fields.hasErrors('tripName')}" th:errors="${tripName}"></td>-->
             </tr>
             <tr>
                 <td>Story:</td>
@@ -67,20 +68,9 @@ body {
                         <textarea cols="40" rows="8" name="textarea" id="textarea" th:field="*{description}"></textarea>
                     </div>
                 </td>
-                <td th:if="${#fields.hasErrors('description')}" th:errors="${description}"></td>
+<!--                <td th:if="${#fields.hasErrors('description')}" th:errors="${description}"></td>-->
             </tr>
 
-
-            <tr>
-                <td>Pictures:</td>
-
-                <td>
-                    <div>
-                        <input type="file" name="files" multiple>
-                        </input>
-                    </div>
-                </td>
-            </tr>
 
         </table>
 
